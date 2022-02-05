@@ -32,5 +32,74 @@
         <li>Manchow Soup</li>
       </ul>
 <p>Here is the link for about me page:<a href="aboutme.html">About me page</a></p>
+<hr>
+<h3>Sports Table</h3>
+<p>Regular sporting activities can prevent chronic diseases and help develop healthy heart, strong bones, and enhanced lung function. 
+   Below are some of the sports which can help people to maintain healthy lifestyle. 
+   The table below shows the location where the sport can be played and the amount required for the initial equipment needed.</p>
+<table border="1">
+    <tr>
+      <th>Activity name</th>
+      <th>Location</th>
+      <th>Amount in USD($)</th>
+    </tr>
+    <tr>
+      <td>Badminton</td>
+      <td>Recreation Centre</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>Cricket</td>
+      <td>Field's house</td>
+      <td>200</td>
+    </tr>
+    <tr>
+        <td>Squash</td>
+        <td>Hower stadium</td>
+        <td>200</td>
+    </tr>
+    <tr>
+        <td>Tennis</td>
+        <td>Spring stadium</td>
+        <td>400</td>
+    </tr>
+  </table>
+  <hr>
+  <h3>Fenwick Tree Algorithm</h3>
+  <blockquote cite="https://en.wikipedia.org/wiki/Fenwick_tree">A Fenwick tree or binary indexed tree is a data structure that can efficiently update elements and calculate prefix sums in a table of numbers.Although Fenwick trees are trees in concept, in practice they are implemented as an implicit data structure using a flat array analogous to implementations of a binary heap.</blockquote>
+  <a href="https://en.wikipedia.org/wiki/Fenwick_tree">Fenwick tree source link</a>
+  <pre>
+Algorithmm for Fenwick tree:     
+    struct FenwickTree {
+        vector<int> bit;  // binary indexed tree
+        int n;
+    
+        FenwickTree(int n) {
+            this->n = n;
+            bit.assign(n, 0);
+        }
+    
+        FenwickTree(vector<int> a) : FenwickTree(a.size()) {
+            for (size_t i = 0; i < a.size(); i++)
+                add(i, a[i]);
+        }
+    
+        int sum(int r) {
+            int ret = 0;
+            for (; r >= 0; r = (r & (r + 1)) - 1)
+                ret += bit[r];
+            return ret;
+        }
+    
+        int sum(int l, int r) {
+            return sum(r) - sum(l - 1);
+        }
+    
+        void add(int idx, int delta) {
+            for (; idx < n; idx = idx | (idx + 1))
+                bit[idx] += delta;
+        }
+    };
+  </pre>
 </body>
 </html>
